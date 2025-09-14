@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/recipeGenius_db
+    username: recipeGenius_db_user
+    password: NrSGaOq81aHe
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 0.7
+      image:
+        options:
+          model: dall-e-3
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,metrics,prometheus
+server:
+  port: 8080

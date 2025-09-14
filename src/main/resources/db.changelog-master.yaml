@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: recipegeniusapp
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: profile_picture_url
+                  type: varchar(512)
+        - createTable:
+            tableName: recipes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: ingredients
+                  type: jsonb
+              - column:
+                  name: instructions
+                  type: jsonb
+              - column:
+                  name: nutritional_info
+                  type: jsonb
+              - column:
+                  name: prep_time
+                  type: integer
+              - column:
+                  name: cook_time
+                  type: integer
+              - column:
+                  name: serving_size
+                  type: integer
+              - column:
+                  name: image_url
+                  type: varchar(512)
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_recipe_user
+                    references: users(id)
